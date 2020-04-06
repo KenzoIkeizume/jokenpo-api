@@ -1,22 +1,22 @@
-package controller
+package user
 
 import (
 	"encoding/json"
-	service "jokenpo-api/services"
+	userService "jokenpo-api/services/user"
 	"net/http"
 
 	"github.com/gorilla/mux"
 )
 
 func get(w http.ResponseWriter, r *http.Request) {
-	users, _ := service.FindAll()
+	users, _ := userService.FindAll()
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(users)
 }
 
-func UserController(router *mux.Router) {
+func SetRouter(router *mux.Router) {
 	userRoute := router.PathPrefix("/user").Subrouter()
 	userRoute.HandleFunc("", get).Methods(http.MethodGet)
 }

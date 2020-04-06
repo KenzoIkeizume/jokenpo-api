@@ -1,12 +1,12 @@
-package service
+package user
 
 import (
 	"jokenpo-api/domain/model"
-	"jokenpo-api/infrastructure/repository"
+	userRepository "jokenpo-api/infrastructure/repository/user"
 )
 
 func FindAll() ([]model.User, error) {
-	users, err := repository.FindAll()
+	users, err := userRepository.FindAll()
 
 	if err != nil {
 		return nil, err

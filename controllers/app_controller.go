@@ -1,6 +1,7 @@
 package controller
 
 import (
+	userController "jokenpo-api/controllers/user"
 	"log"
 	"net/http"
 
@@ -15,7 +16,7 @@ func notFound(w http.ResponseWriter, r *http.Request) {
 
 func AppController() {
 	router := mux.NewRouter()
-	UserController(router)
+	userController.SetRouter(router)
 	router.HandleFunc("", notFound)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
