@@ -5,7 +5,17 @@ import (
 	"jokenpo-api/infrastructure/datastore"
 )
 
-func FindAll() ([]model.User, error) {
+type userRepository struct{}
+
+type UserRepository interface {
+	FindAll() ([]model.User, error)
+}
+
+func NewUserRepository() UserRepository {
+	return &userRepository{}
+}
+
+func (us userRepository) FindAll() ([]model.User, error) {
 	users, err := datastore.Find()
 
 	if err != nil {

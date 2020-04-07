@@ -2,11 +2,23 @@ package user
 
 import (
 	"jokenpo-api/domain/model"
-	userRepository "jokenpo-api/infrastructure/repository/user"
+	user_repository "jokenpo-api/infrastructure/repository/user"
 )
 
-func FindAll() ([]model.User, error) {
-	users, err := userRepository.FindAll()
+type userService struct {
+	userRepository user_repository.UserRepository
+}
+
+type UserService interface {
+	FindAll() ([]model.User, error)
+}
+
+func NewUserService(ur user_repository.UserRepository) UserService {
+	return &userService{ur}
+}
+
+func (us userService) FindAll() ([]model.User, error) {
+	users, err := us.userRepository.FindAll()
 
 	if err != nil {
 		return nil, err
