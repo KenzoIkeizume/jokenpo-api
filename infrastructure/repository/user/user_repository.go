@@ -2,25 +2,28 @@ package user
 
 import (
 	"jokenpo-api/domain/model"
-	"jokenpo-api/infrastructure/datastore"
+
+	"github.com/jinzhu/gorm"
 )
 
-type userRepository struct{}
+type userRepository struct {
+	db *gorm.DB
+}
 
 type UserRepository interface {
-	FindAll() ([]model.User, error)
+	FindAll(u []*model.User) ([]*model.User, error)
 }
 
-func NewUserRepository() UserRepository {
-	return &userRepository{}
+func NewUserRepository(db *gorm.DB) UserRepository {
+	return &userRepository{db}
 }
 
-func (us userRepository) FindAll() ([]model.User, error) {
-	users, err := datastore.Find()
+func (ur *userRepository) FindAll(u []*model.User) ([]*model.User, error) {
+	err := ur.db.Find(&u).Error
 
 	if err != nil {
 		return nil, err
 	}
 
-	return users, nil
+	return u, nil
 }

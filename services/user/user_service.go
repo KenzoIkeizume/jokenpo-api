@@ -10,15 +10,15 @@ type userService struct {
 }
 
 type UserService interface {
-	FindAll() ([]model.User, error)
+	FindAll(us []*model.User) ([]*model.User, error)
 }
 
 func NewUserService(ur user_repository.UserRepository) UserService {
 	return &userService{ur}
 }
 
-func (us userService) FindAll() ([]model.User, error) {
-	users, err := us.userRepository.FindAll()
+func (us userService) FindAll(u []*model.User) ([]*model.User, error) {
+	users, err := us.userRepository.FindAll(u)
 
 	if err != nil {
 		return nil, err

@@ -19,5 +19,5 @@ func AppController() {
 	userController.SetRouter(router)
 	router.HandleFunc("", notFound)
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":5000", router))
 }
