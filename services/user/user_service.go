@@ -11,6 +11,7 @@ type userService struct {
 
 type UserService interface {
 	FindAll(us []*model.User) ([]*model.User, error)
+	Create(us *model.User) (*model.User, error)
 }
 
 func NewUserService(ur user_repository.UserRepository) UserService {
@@ -25,4 +26,14 @@ func (us userService) FindAll(u []*model.User) ([]*model.User, error) {
 	}
 
 	return users, nil
+}
+
+func (us userService) Create(u *model.User) (*model.User, error) {
+	user, err := us.userRepository.Create(u)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return user, nil
 }

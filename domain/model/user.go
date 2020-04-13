@@ -3,10 +3,10 @@ package model
 import "time"
 
 type User struct {
-	ID        uint      `gorm:"primary_key" json:"id"`
-	Name      string    `json:"name"`
-	Age       string    `json:"age"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
-	DeletedAt time.Time `json:"deleted_at"`
+	ID        uint       `gorm:"PRIMARY_KEY" json:"id"`
+	Name      string     `gorm:"NOT NULL" json:"name"`
+	Age       int        `gorm:"type:int; NOT NULL" json:"age"`
+	CreatedAt time.Time  `gorm:"type:datetime; NOT NULL; ASSOCIATION_AUTOCREATE"`
+	UpdatedAt time.Time  `gorm:"type:datetime; NOT NULL; ASSOCIATION_AUTOUPDATE"`
+	DeletedAt *time.Time `gorm:"type:datetime;"`
 }

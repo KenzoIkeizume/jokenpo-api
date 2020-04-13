@@ -12,6 +12,7 @@ type userRepository struct {
 
 type UserRepository interface {
 	FindAll(u []*model.User) ([]*model.User, error)
+	Create(u *model.User) (*model.User, error)
 }
 
 func NewUserRepository(db *gorm.DB) UserRepository {
@@ -20,6 +21,16 @@ func NewUserRepository(db *gorm.DB) UserRepository {
 
 func (ur *userRepository) FindAll(u []*model.User) ([]*model.User, error) {
 	err := ur.db.Find(&u).Error
+
+	if err != nil {
+		return nil, err
+	}
+
+	return u, nil
+}
+
+func (ur *userRepository) Create(u *model.User) (*model.User, error) {
+	err := ur.db.Create(&u).Error
 
 	if err != nil {
 		return nil, err
