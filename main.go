@@ -1,8 +1,8 @@
 package main
 
 import (
-	"jokenpo-api/config"
-	controller "jokenpo-api/controllers"
+	config "jokenpo-api/config"
+	controller "jokenpo-api/controller"
 )
 
 func main() {

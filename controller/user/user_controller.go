@@ -2,11 +2,12 @@ package user
 
 import (
 	"encoding/json"
-	"jokenpo-api/domain/model"
-	"jokenpo-api/infrastructure/datastore"
-	user_repository "jokenpo-api/infrastructure/repository/user"
-	user_service "jokenpo-api/services/user"
 	"net/http"
+
+	model "jokenpo-api/domain/model"
+	datastore "jokenpo-api/infrastructure/datastore"
+	user_repository "jokenpo-api/infrastructure/repository/user"
+	user_service "jokenpo-api/service/user"
 
 	"github.com/gorilla/mux"
 )

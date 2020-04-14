@@ -1,7 +1,7 @@
 package user
 
 import (
-	"jokenpo-api/domain/model"
+	model "jokenpo-api/domain/model"
 	user_repository "jokenpo-api/infrastructure/repository/user"
 )
 

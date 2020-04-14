@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"log"
 	"os"
+
 	"path/filepath"
 
 	"github.com/davecgh/go-spew/spew"
-
 	"github.com/spf13/viper"
 )
 

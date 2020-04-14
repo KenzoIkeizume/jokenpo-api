@@ -1,9 +1,10 @@
 package datastore
 
 import (
-	"jokenpo-api/config"
-	"jokenpo-api/domain/model"
 	"log"
+
+	config "jokenpo-api/config"
+	model "jokenpo-api/domain/model"
 
 	"github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"

@@ -1,10 +1,11 @@
 package controller
 
 import (
-	"jokenpo-api/config"
-	userController "jokenpo-api/controllers/user"
 	"log"
 	"net/http"
+
+	config "jokenpo-api/config"
+	user_controller "jokenpo-api/controller/user"
 
 	"github.com/gorilla/mux"
 )
@@ -17,7 +18,7 @@ func notFound(w http.ResponseWriter, r *http.Request) {
 
 func AppController() {
 	router := mux.NewRouter()
-	userController.SetRouter(router)
+	user_controller.SetRouter(router)
 	router.HandleFunc("", notFound)
 	println("address: ", config.C.Server.Address)
 	log.Fatal(http.ListenAndServe(":"+config.C.Server.Address, router))
