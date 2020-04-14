@@ -2,11 +2,11 @@ database:
     user: jokenpo
     password: jokenpo
     net: tcp
-    addr: 127.0.0.1:3302
+    addr: jokenpo-mysql:3306
     dbname: jokenpo
     allowNativePasswords: true
     params:
         parseTime: "true"
 
 server:
-    address: 5000
+    address: 3000

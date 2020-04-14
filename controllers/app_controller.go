@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"jokenpo-api/config"
 	userController "jokenpo-api/controllers/user"
 	"log"
 	"net/http"
@@ -18,6 +19,6 @@ func AppController() {
 	router := mux.NewRouter()
 	userController.SetRouter(router)
 	router.HandleFunc("", notFound)
-
-	log.Fatal(http.ListenAndServe(":5000", router))
+	println("address: ", config.C.Server.Address)
+	log.Fatal(http.ListenAndServe(":"+config.C.Server.Address, router))
 }
