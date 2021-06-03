@@ -57,7 +57,7 @@ func (uc userController) post(w http.ResponseWriter, r *http.Request) {
 
 func SetRouter(router *mux.Router) {
 	uc := NewUserController()
-	userRoute := router.PathPrefix("/user").Subrouter()
+	userRoute := router.PathPrefix("/users").Subrouter()
 	userRoute.HandleFunc("", uc.get).Methods(http.MethodGet)
 	userRoute.HandleFunc("", uc.post).Methods(http.MethodPost)
 }

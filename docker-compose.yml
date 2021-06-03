@@ -1,10 +1,13 @@
 version: '3.7'
+
 networks:
   jokenpo:
     driver: bridge
+
 volumes:
   jokenpo-mysql-volume: {}
   jokenpo-backend-volume: {}
+
 services:
   jokenpo-mysql:
     container_name: jokenpo-mysql
@@ -22,6 +25,7 @@ services:
       - jokenpo-mysql-volume:/var/lib/mysql
     ports:
       - '3302:3306'
+
   jokenpo-backend:
     container_name: jokenpo-backend
     networks:
@@ -30,7 +34,7 @@ services:
       dockerfile: ./.infra/backend/Dockerfile
       context: .
     volumes:
-      - jokenpo-backend-volume:/app
+      - ./:/app
     ports:
       - '5000:3000'
     depends_on:
