@@ -1,12 +1,12 @@
 package controller
 
 import (
-	"log"
 	"net/http"
 
 	config "jokenpo-api/config"
 	user_controller "jokenpo-api/controller/user"
 
+	"github.com/golang/glog"
 	"github.com/gorilla/mux"
 )
 
@@ -20,6 +20,11 @@ func AppController() {
 	router := mux.NewRouter()
 	user_controller.SetRouter(router)
 	router.HandleFunc("", notFound)
-	println("address: ", config.C.Server.Address)
-	log.Fatal(http.ListenAndServe(":"+config.C.Server.Address, router))
+
+	glog.Info("Server started on port %s", config.C.Server.Address)
+
+	err := http.ListenAndServe(":"+config.C.Server.Address, router)
+	if err != nil {
+		glog.Fatal("Server cannot listen: %+v", err)
+	}
 }

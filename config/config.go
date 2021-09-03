@@ -1,13 +1,12 @@
 package config
 
 import (
-	"fmt"
-	"log"
 	"os"
 
 	"path/filepath"
 
 	"github.com/davecgh/go-spew/spew"
+	"github.com/golang/glog"
 	"github.com/spf13/viper"
 )
 
@@ -39,12 +38,11 @@ func ReadConfig() {
 	viper.AutomaticEnv()
 
 	if err := viper.ReadInConfig(); err != nil {
-		fmt.Println(err)
-		log.Fatalln(err)
+		glog.Info("Error to read config file: %+v", err)
 	}
 
 	if err := viper.Unmarshal(&Config); err != nil {
-		fmt.Println(err)
+		glog.Info("Error to decode config file: %+v", err)
 		os.Exit(1)
 	}
 

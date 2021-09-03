@@ -1,12 +1,11 @@
 package datastore
 
 import (
-	"log"
-
 	config "jokenpo-api/config"
 	model "jokenpo-api/domain/model"
 
 	"github.com/go-sql-driver/mysql"
+	"github.com/golang/glog"
 	"github.com/jinzhu/gorm"
 )
 
@@ -26,7 +25,7 @@ func NewDB() *gorm.DB {
 	db, err := gorm.Open(DBMS, mySQLConfig.FormatDSN())
 
 	if err != nil {
-		log.Fatalln("database error: ", err)
+		glog.Fatal("Database cannot connect: %+v", err)
 	}
 
 	migrations(db)
