@@ -21,6 +21,7 @@ func NewDB() *gorm.DB {
 		Params: map[string]string{
 			"parseTime": config.C.Database.Params.ParseTime,
 		},
+		Timeout: config.C.Database.Timeout,
 	}
 	db, err := gorm.Open(DBMS, mySQLConfig.FormatDSN())
 

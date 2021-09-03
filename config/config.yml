@@ -7,6 +7,7 @@ database:
     allowNativePasswords: true
     params:
         parseTime: "true"
+    timeout: 1000000000
 
 server:
     address: 3000

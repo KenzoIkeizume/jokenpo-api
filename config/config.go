@@ -2,6 +2,7 @@ package config
 
 import (
 	"os"
+	"time"
 
 	"path/filepath"
 
@@ -21,6 +22,7 @@ type config struct {
 		Params               struct {
 			ParseTime string
 		}
+		Timeout time.Duration
 	}
 	Server struct {
 		Address string
